@@ -4,16 +4,18 @@ plateSide = totalSide - plateDelta;
 height = 12;
 
 module plate3d(side) {
-  linear_extrude(height=3) plate(side=side);;
+  linear_extrude(height=2) plate(side=side - 0.25);;
 }
 
 module plate(side) {
   difference() {
-    color("blue") square(side=side, center=true);
-    for (i = [0:5]) {
-      translate(v=[-i * 4.75, 0, 0]) square([2.5, side - 5], center=true);
-      translate(v=[i * 4.75, 0, 0]) square([2.5, side - 5], center=true);
+    color("blue") square(side, center=true);
+    for (i = [-3:3]) {
+      translate(v=[i * 10, 0, 0]) square([8, side - 8], center=true);
     }
+  }
+  for (i = [-1:1]) {
+    translate(v=[0, i * 20, 0]) square([side - 8, 2], center=true);
   }
 }
 
@@ -31,4 +33,5 @@ module base(side, plateSide, height) {
   }
 }
 
+plate3d(plateSide);
 base(totalSide, plateSide, height);
