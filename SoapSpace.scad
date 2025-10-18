@@ -9,13 +9,14 @@ module plate3d(side) {
 
 module plate(side) {
   difference() {
-    color("blue") square(side, center=true);
-    for (i = [-3:3]) {
-      translate(v=[i * 10, 0, 0]) square([8, side - 8], center=true);
-    }
+    square(side, center=true);
+    square(side - 8, center=true);
   }
   for (i = [-1:1]) {
-    translate(v=[0, i * 20, 0]) square([side - 8, 2], center=true);
+    color("orange") translate(v=[i * 20, 0, 0]) square([2, side - 8], center=true);
+  }
+  for (i = [-1:1]) {
+    color("white") translate(v=[0, i * 20, 0]) square([side - 8, 2], center=true);
   }
 }
 
@@ -34,4 +35,4 @@ module base(side, plateSide, height) {
 }
 
 plate3d(plateSide);
-base(totalSide, plateSide, height);
+// base(totalSide, plateSide, height);
